@@ -1,0 +1,72 @@
+table {
+
+    width: 300px;
+    text-align: center;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* Create three equal columns that floats next to each other */
+  .column {
+    float: left;
+    width: 33%;
+    padding: 10px;
+    
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  
+  
+  /* body {
+      width: 70%;
+      font-size: center;
+      margin: auto;
+  }
+  
+  #footerid {
+      width: 70%;
+      margin: auto;
+  }
+  
+  #myform {
+    width: 50%;
+  }
+  
+  #sokbtn {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+  
+  .inledning {
+    background-color: rgb(226, 223, 223);
+    margin: 0px;
+    padding: 10px;
+  }
+  
+  .inledning > p {
+    margin-bottom: 0px;
+  }
+  
+  .resultat {
+    background-color: rgb(226, 223, 223);
+    width: 100%;
+    padding: 10px;
+  }
+  
+  .polisen {
+    padding: 0px;
+  }
+  
+  li {
+    max-width: 50%;
+    margin-right: 10px;
+    cursor: pointer;
+  } */
