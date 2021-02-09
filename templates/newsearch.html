@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='newstyle.css') }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <title>TwitterPoPo</title>
+    </head>
+    <body>
+        <h1>Twitterpolisen</h1>
+        <nav class="navbar">
+            <div class="container-fluid">
+              <form action="http://127.0.0.1:5000/search" method="post">
+                <fieldset class="formular">
+                    <input class="form-input"  type="brott" id="brott" name="brott">
+                    <input class="form-input" type="date" id="date" name="date">
+                    <input type="submit" class="btn btn-primary" value="Sök">
+                 </fieldset>
+              </form>
+            </div>
+        </nav>
+        <ul id="left">
+            <li>polisen</li>
+            {% for stories in res: %}
+                <li>{{ stories["name"] }}</li>
+            {%endfor%}
+        </ul>
+        <ul id="right">
+            <li>twitter</li>
+            {% for tweet in tweeters: %}
+                <h2>{{ tweet["username"] }}</h2>
+                <li>{{ tweet["text"] }}</li>
+            {%endfor%}
+        </ul>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script> 
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script src="{{ url_for('static', filename='/script.js') }}"></script>  
+    </body>
+</html>

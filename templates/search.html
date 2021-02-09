@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>TwitterPoPo</title>
+    </head>
+    <body>
+    <div class="content">
+      <div id="header">
+        <h1 id="header" onclick=(myfunction())>Twitterpolisen</h1>
+      </div>
+        <nav class="navbar">
+          <div class="container-fluid">
+            <form action="http://127.0.0.1:5000/search" method="post">
+              <fieldset class="formular">
+                  <input class="form-input"  type="brott" id="brott" name="brott">
+                  <input type="submit" class="btn btn-primary" value="Sök">
+               </fieldset>
+            </form>
+          </div>
+        </nav>
+        <div id="help">
+          <p>
+            <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              Hjälp
+            </a>
+          </p>
+          <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+              <p>Detta är twitterpolisen! Här kan du söka på en händelse och med hjälp utav polisens API så får du upp de senaste 
+                händelserna. Klickar du sedan på en av händelserna så får du upp tweets som har med händelsen att göra! Exempel på 
+                det du kan söka på kan vara: Alkohollagen, Anträffad död, Anträffat gods, Arbetsplatsolycka, Bedrägeri, Bombhot
+                Ekobrott, Farligt föremål, misstänkt, Fjällräddning, Fylleri/LOB, Förfalskningsbrott, Försvunnen person, Gränskontroll
+                Larm Inbrott, Larm Överfall, Rattfylleri Rån!</p>
+            </div>
+          </div>
+        </div>
+        <h2 id="eventTitle">Händelser</h2>
+        <h2 id="tweetTitle">Tweets</h2>
+        <div class="row">
+          <div class="column1">
+            {% for stories in res:%}
+              <div class="card">
+              <h5>{{ stories["name"] }}</h5>
+                <p id="click">{{ stories["summary"] }}</p>
+                <a href="{{ stories["url"]}}">Länk till händelse</a>
+              </div>
+            {%endfor%}  
+          </div>
+          <div class="column2">
+          {% for tweet in tweeters:%}
+            <div class="card">
+              <h5>{{ tweet["username"] }}</h5>
+              <p>{{ tweet["text"] }}</p>
+            </div>
+          {%endfor%}
+          </div>
+        </div>
+      </div>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>  
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+     <script src="{{ url_for('static', filename='/script.js') }}"></script> 
+    </body>  
+</html>
+            
+                <!-- </div>
+                <div class="column2" style="background-color:#ccc;">
+                  <h2>Tweets</h2>
+                  <table class="">
+                    <tr>
+                      <td id="twitters">
+                        <ul id="tweets">
+                        </ul>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <div class="column3">
+                <div class="police">
+                  <table>
+                    <tr>
+                      <td id="Polisen">
+                        <ul id="events">
+                        </ul>
+                        </td>
+                        <td id="info">
+                        <p id="eventInfo"></p>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+        {% for stories in res:%}
+        <div class="card">
+          <div class="card-header">
+            {{ brott }}
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ stories["name"]}}</h5>
+            <p class="card-text">{{ stories["summary"]}}</p>
+            <p class="card-text">{{ stories["location"] }}</p>
+            <a href="{{ stories["url"]}}" class="btn btn-primary">länk till händelse</a>
+          </div>
+        </div>
+      </div>
+          <div class="card-body">
+          {% for tweet in tweeters:%}
+          <h5 class="card-title">{{tweet}}</h5>
+          {%endfor%}
+      </div>
+        {%endfor%}
+
+            <nav id="footerid" class="navbar fixed-bottom navbar-light bg-light">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="#">Hemsida skapad av: Grupp 15</a>
+                  <p>Marcus Thuner-Asker, Jakob Jessen, Tor Stenfeldt, Viktor Polak</p>
+                </div>
+              </nav>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    </body>
+</html> -->

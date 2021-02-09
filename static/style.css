@@ -1,0 +1,84 @@
+.content {
+    max-width: 70%;
+    margin: auto;
+    height: 120vh;
+  }
+body > div > nav {
+    background: #0c3256;
+    margin: 0px;
+    margin-bottom: 10px;
+    border-bottom: solid;
+    border-top: solid;
+}
+
+#header {
+    font-size: 80px;
+    text-align:center;
+    margin-bottom: 0px;
+    display:block;
+}
+
+#policeimg{
+    width: 50px;
+    height: auto;
+    float: left;
+    position: relative;
+    margin-top:10px;
+
+}
+
+#twitterimg{
+    float:right;
+    width: 50px;
+    height: auto;
+    position: relative;
+}
+.column2 {
+    float: right;
+    width: 50% !important;
+    padding: 10px;
+    overflow:scroll;
+    height: 500px;
+    padding: 15px;
+   
+    
+}
+.column1 {
+    float:left;
+    width: 50% !important;
+    padding: 10px;
+    overflow:scroll;
+    height: 500px;
+    padding: 15px;
+} 
+
+.column1>div:nth-child(even) {
+    background-color: #ccc;
+    padding: 21px;
+}
+
+.column1>div:nth-child(odd) {
+    background-color: rgba(226, 226, 226, 0.918);
+    padding: 21px;
+}
+
+.column2>div:nth-child(even) {
+    background-color: #ccc;
+    padding: 10px;
+}
+
+.column2>div:nth-child(odd) {
+    background-color: rgba(226, 226, 226, 0.918);
+    padding: 10px;
+}
+  
+#eventTitle {
+    float: left;
+    width:50%;
+}
+
+#tweetTitle{
+    float: right;
+    width:50%;
+
+}
