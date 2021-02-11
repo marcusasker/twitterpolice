@@ -7,7 +7,7 @@ app.config["DEBUG"] = True
 @app.route('/')
 def hello():
     res = get_police()
-    x = "malmö universitet"
+    x = "Polisen"
     y = search_all_tweet(x)
     return render_template('test.html', res=res, tweeters=y)
 
@@ -25,6 +25,13 @@ def search():
 
         
     return render_template('newsearch.html', brott=brott, res=res, tweeters=y)
+    
+@app.route('/api')
+def api():
+    return render_template('apidoc.html')
+
+
+
 
 if __name__ == '__main__':
     app.debug = True
