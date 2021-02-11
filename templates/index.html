@@ -17,10 +17,12 @@
           <div class="container-fluid">
             <form action="http://127.0.0.1:5000/search" method="post">
               <fieldset class="formular">
-                  <input class="form-input"  type="brott" id="brott" name="brott">
-                  <input type="submit" class="btn btn-primary" value="Sök">
-               </fieldset>
+                <input class="form-input"  type="brott" id="brott" name="brott">
+                <input class="form-input" type="date" id="date" name="date">
+                <input type="submit" class="btn btn-primary" value="Sök">
+             </fieldset>
             </form>
+            <a id="backBtn" href="http://127.0.0.1:5000/api">Här kan du läsa api-dokumentationen</a>
           </div>
           <div>
           </div>
@@ -49,17 +51,17 @@
               <div class="card">
               <h5>{{ stories["name"]}}</h5>
                 <p>{{ stories["summary"]}}</p>
-                <p>{{ stories["location"] }}</p>
                 <a href="{{ stories["url"]}}">Länk till händelse</a>
               </div>
             {%endfor%}  
           </div>
           <div class="column2">
-            <div>
-          {% for tweet in tweeters:%}
-              <h5>{{tweet}}</h5>
-          {%endfor%}
+            {% for tweet in tweeters:%}
+            <div class="card">
+              <h5>{{tweet["username"]}}</h5>
+              <p>{{tweet["text"] }}</p>
             </div>
+            {%endfor%}
           </div>
         </div>
       </div>

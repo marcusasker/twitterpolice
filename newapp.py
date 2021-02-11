@@ -7,9 +7,9 @@ app.config["DEBUG"] = True
 @app.route('/')
 def hello():
     res = get_police()
-    x = "Polisen"
+    x = "Polis"
     y = search_all_tweet(x)
-    return render_template('test.html', res=res, tweeters=y)
+    return render_template('index.html', res=res, tweeters=y)
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
@@ -22,9 +22,9 @@ def search():
         lat = cordinate["latitude"]
 
     y = search_tweet(brott, lon, lat)
-
+    
         
-    return render_template('newsearch.html', brott=brott, res=res, tweeters=y)
+    return render_template('search.html', brott=brott, res=res, tweeters=y)
     
 @app.route('/api')
 def api():

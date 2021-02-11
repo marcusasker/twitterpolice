@@ -71,7 +71,7 @@ body > div > nav {
     background-color: rgba(226, 226, 226, 0.918);
     padding: 10px;
 }
-  
+
 #eventTitle {
     float: left;
     width:50%;
@@ -81,4 +81,21 @@ body > div > nav {
     float: right;
     width:50%;
 
+}
+
+.returdata {
+    background-color: rgb(156, 155, 155);
+    font-family: 'Source Code Pro', monospace;
+}
+
+body > div:nth-child(5) > p.returdata {
+    background-color: grey;
+    font-family: 'Source Code Pro', monospace;
+}
+
+#backBtn {
+    color: yellow;
+    margin-left: 10px;
+    float: right;
+    
 }

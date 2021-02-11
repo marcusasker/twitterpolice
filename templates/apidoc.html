@@ -1,39 +1,116 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="{{ url_for('static', filename='newstyle.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-        <title>TwitterPoPo</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@1,500&display=swap" rel="stylesheet">        <title>TwitterPoPo</title>
     </head>
     <body>
-        <h1>Apidokumentation</h1>
-        <nav class="navbar">
-            <a href="http://127.0.0.1:5000/">Tillbaka</a>
-        </nav>
-        <div>
-            <h2>Api-beskrivning</h2>
-            <p>beskrivning</p>
+        <div class="content">
+            <div id="header">
+                <h1 id="header">Apidokumentationen</h1>
+            </div>
+            <nav class="navbar">
+                <a id="backBtn" href="http://127.0.0.1:5000/">Tillbaka</a>
+            </nav>
+            <div>
+                <h2>Api-beskrivning</h2>
+                <p>Denna API-dokumentation är inte implementerad, det är alltså inte en dokumentation för den mashup-tjänst som har gjorts. Detta är en teoretisk dokumentation för en tjänst med liknande uppgift.</p>
+                <p>Med hjälp utav detta API kan man få ut de senaste händelserna som har inrapporterats utav den svenska polisen. Med händelserna kan man också se relevanta tweets som har publicerats på Twitters hemsida angående varje händelse. Den information som finns möjlig att hämta ut görs i antingen HTML eller JSON. Vi använder ej XML. 
+
+                    Nedanför så finns det olika tillvägagångssätten för att hämta ut informationen. Dessa sätt beskrivs under och där det finns “{id}” med krävs ett id. De ID som vårt API letar efter är alltid en siffra och heltal. Våra exempel nedanför är beskrivna i JSON. 
+                </p>
+            </div>
+            <div>
+                <h2>GET /:</h2>
+                <p>Hämtar hela listan på de 500 senaste polis händelser i Sverige. I denna lista finns namn på händelsen samt en sammanfattning, id, länk till polisens hemsida för mer information och plats för vart händelsen skedde.</p>
+                <h3>Indata:</h3>
+                <p>Krävs ej för GET</p>
+            <h3>Returdata:</h3>
+                <pre class="returdata">
+                <code>
+    [ {
+        "id":2,
+        "datetime":"2021-02-11 8:13:00 +01:00",
+        "name":"11 februari 08:13, Rattfylleri, Luleå",
+        "summary":"Misstänks för drograttfylleri.",
+        "url":"https://polisen.se/aktuellt/handelser/2021/februari/11/11-februari-0813-rattfylleri-lulea/",
+        "type":"Rattfylleri",
+        "location":{
+        "name":"Luleå",
+        "gps":"65.584819,22.156703"
+        }
+    },
+    {
+        "id":4,
+        "datetime":"2021-02-11 2:25:00 +01:00",
+        "name":"11 februari 02:25, Motorfordon, stöld, Stockholm",
+        "summary":"Polisen grep den man som vid Brommaplan försökt stjäla en taxibil.",  
+        "url":"https://polisen.se/aktuellt/handelser/2021/februari/11/11-februari-0225-motorfordon-stold-stockholm/",
+        "type":"Motorfordon, stöld",
+        "location":{
+        "name":"Stockholm",
+        "gps":"59.329324,18.068581"
+        }
+    }]
+                </code>
+              </pre>
+            </div>
+            <div>
+                <h2>GET /{id}</h2>
+                <p>Hämtar ut specifik information till en händelse samt tweets som är relaterade till denna specifika händelse. </p>
+                <h3>Indata:</h3>
+                <p>Ej möjligt för GET.</p>
+                <h3>Returdata:</h3>
+                <pre class="returdata"> 
+                    <code>
+    {
+    "id":4,
+    "datetime":"2021-02-11 2:25:00 +01:00",
+    "name":"11 februari 02:25, Motorfordon, stöld, Stockholm",
+    "tweetuser":"Polisen grep den man som vid Brommaplan försökt stjäla en taxibil.",
+    "tweet":"OMG, jag såg precis polisen gripa en man ur en taxibil!",
+    }
+                    </code>
+                </pre>
+            </div>
+            <div>
+                <h2>PUT /{id}</h2>
+                <p>Uppdaterar sammanfattningen i en specifik polis händelse.</p>
+                <h3>Indata:</h3>
+                <pre class="returdata">
+                    <code>
+    {
+        "id":4,
+        "datetime":"2021-02-11 2:25:00 +01:00",
+        "name":"11 februari 02:25, Motorfordon, stöld, Stockholm",
+        "tweetuser":"Polisen grep den man som vid Brommaplan försökt stjäla en taxibil.",
+        "tweet":"OMG, jag såg precis polisen gripa en man ur en taxibil!",
+    }
+                    </code>
+                </pre>
+                <h3>Returdata:</h3>
+                <p> Ingen returdata ges.</p>
+            </div>
+            <div>
+                <h2>DELETE /{id}</h2>
+                <p>Tar bort en specifik tweet till händelse från databasen.</p>
+                <h3>Indata:</h3>
+                <p>Ej möjligt för DELETE</p>
+                <h3>Returdata:</h3>
+                <p> Ingen returdata ges.</p>
+            </div>
         </div>
-        <div>
-            <h2>GET</h2>
-            <p>beskrivning</p>
-            <h3>Returdata</h3>
-            <p class="returdata">blablabla</p>
-        </div>
-        <div>
-            <h2>POST</h2>
-            <p>beskrivning</p>
-            <h3>Returdata</h3>
-            <p class="returdata">blablabla</p>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script> 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-        <script src="{{ url_for('static', filename='/script.js') }}"></script>  
-    </body>
-</html>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script> 
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+            <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+            <script src="{{ url_for('static', filename='/script.js') }}"></script>  
+        </body>
+    </html>
