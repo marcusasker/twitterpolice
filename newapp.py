@@ -23,15 +23,11 @@ def search():
 
     y = search_tweet(brott, lon, lat)
     
-        
     return render_template('search.html', brott=brott, res=res, tweeters=y)
     
 @app.route('/api')
 def api():
     return render_template('apidoc.html')
-
-
-
 
 if __name__ == '__main__':
     app.debug = True
