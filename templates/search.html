@@ -19,7 +19,8 @@
           <div class="container-fluid">
             <form action="http://127.0.0.1:5000/search" method="post">
               <fieldset class="formular">
-                <input class="form-input"  type="brott" id="brott" name="brott">
+
+                <input class="form-input"  type="brott" id="brott" name="brott" required>
                 <input class="form-input" type="date" id="date" name="date">
                 <input type="submit" class="btn btn-primary" value="Sök">
              </fieldset>
@@ -43,7 +44,7 @@
             </div>
           </div>
         </div>
-        <h2 id="eventTitle">Händelser</h2>
+        <h2 id="eventTitle">{{brott}}</h2>
         <h2 id="tweetTitle">Tweets</h2>
         <div class="row">
           <div class="column1">
@@ -56,12 +57,16 @@
             {%endfor%}  
           </div>
           <div class="column2">
-          {% for tweet in tweeters:%}
-            <div class="card">
-              <h5>{{ tweet["username"] }}</h5>
-              <p>{{ tweet["text"] }}</p>
-            </div>
-          {%endfor%}
+            {% for tweet in tweeters:%}
+              {%if tweeters == []:%}
+                <h5>Fanns inga tweets om händelse!</h5>
+              {%else:%}
+              <div class="card">
+                <h5>{{tweet["username"]}}</h5>
+                <p>{{tweet["text"] }}</p>
+              </div>
+              {%endif%}
+            {%endfor%}
           </div>
         </div>
       </div>

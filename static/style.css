@@ -75,6 +75,7 @@ body > div > nav {
 #eventTitle {
     float: left;
     width:50%;
+    text-transform: capitalize;
 }
 
 #tweetTitle{
@@ -97,5 +98,10 @@ body > div:nth-child(5) > p.returdata {
     color: yellow;
     margin-left: 10px;
     float: right;
-    
+}
+
+#errorMsg {
+    border: red solid;
+    margin: 10px;
+    padding: 10px;
 }

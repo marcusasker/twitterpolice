@@ -27,9 +27,12 @@
           <div>
           </div>
         </nav>
+          {% if error != None %}
+          <p id="errorMsg" >{{ error }}</p>
+          {% endif %}
         <div id="help">
           <p>
-            <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <a data-bs-toggle="collapse" href="#collapseExample" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
               Hjälp
             </a>
           </p>
@@ -39,7 +42,7 @@
                 händelserna. Klickar du sedan på en av händelserna så får du upp tweets som har med händelsen att göra! Exempel på 
                 det du kan söka på kan vara: Alkohollagen, Anträffad död, Anträffat gods, Arbetsplatsolycka, Bedrägeri, Bombhot
                 Ekobrott, Farligt föremål, misstänkt, Fjällräddning, Fylleri/LOB, Förfalskningsbrott, Försvunnen person, Gränskontroll
-                Larm Inbrott, Larm Överfall, Rattfylleri Rån!</p>
+                Larm Inbrott, Larm Överfall, Rattfylleri Rån, Mord/Dråp!</p>
             </div>
           </div>
         </div>
@@ -57,10 +60,14 @@
           </div>
           <div class="column2">
             {% for tweet in tweeters:%}
-            <div class="card">
-              <h5>{{tweet["username"]}}</h5>
-              <p>{{tweet["text"] }}</p>
-            </div>
+              {%if tweeters == []:%}
+                <h5>Fanns inga tweets om händelse!</h5>
+              {%else:%}
+              <div class="card">
+                <h5>{{tweet["username"]}}</h5>
+                <p>{{tweet["text"] }}</p>
+              </div>
+              {%endif%}
             {%endfor%}
           </div>
         </div>

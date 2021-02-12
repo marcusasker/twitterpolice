@@ -89,7 +89,7 @@ def get_geo_locations(dict):
             geodict["longitude"] = longitude
             geodict["latitude"] = latitude
             geolocations.append(geodict)
-
+            
     return geolocations
 
 def search_tweet(question, longitude, latitude):
