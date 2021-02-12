@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, session, flash, url_for
 import json
-from twitterfunctions import search_tweet, get_police, search_police, get_geo_locations, search_all_tweet
-
+from twitterfunctions import search_tweet, get_police, search_police, get_geo_locations, search_all_tweet, search_all_police
 app = Flask(__name__)
 app.config["DEBUG"] = True
 @app.route('/')
@@ -13,17 +12,36 @@ def hello():
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    brott = request.form['brott']
-    date = request.form['date']
-    res = search_police(brott, date)
-    x = get_geo_locations(res)
-    for cordinate in x:
-        lon = cordinate["longitude"]
-        lat = cordinate["latitude"]
 
-    y = search_tweet(brott, lon, lat)
-    
-    return render_template('search.html', brott=brott, res=res, tweeters=y)
+    try:
+        brott = request.form['brott']
+        date = request.form['date']
+
+        if date == "":
+            res = search_all_police(brott)
+            x = get_geo_locations(res)
+            for cordinate in x:
+                lon = cordinate["longitude"]
+                lat = cordinate["latitude"]
+            y = search_tweet(brott, lon, lat)
+            
+        else:
+            res = search_police(brott, date)
+            x = get_geo_locations(res)
+            for cordinate in x:
+                lon = cordinate["longitude"]
+                lat = cordinate["latitude"]
+            y = search_tweet(brott, lon, lat)
+
+        return render_template('search.html', brott=brott, res=res, tweeters=y)
+
+    except UnboundLocalError:
+        flash("Fältet är tomt")
+        res = get_police()
+        x = "Polis"
+        y = search_all_tweet(x)
+        return render_template("index.html", res=res, tweeters=y)
+
     
 @app.route('/api')
 def api():

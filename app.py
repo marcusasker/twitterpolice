@@ -55,10 +55,6 @@ def search():
         tweet_dict["username"]=posts.user.name
         tweet_dict["text"]=posts.text
         tweeters.append(tweet_dict)
-
-    
-
-        
     return render_template('search.html', brott=brott, res=res, tweeters=tweeters)
 
 if __name__ == '__main__':

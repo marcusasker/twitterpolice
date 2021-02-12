@@ -65,6 +65,12 @@ def search_police(question, date):
             result.append(story)
     return result
 
+def search_all_police(question):
+    response = requests.get("http://polisen.se/api/events?type=" + question)
+    print(response.headers['content-type'])
+    res = response.json()
+    return res
+
 def get_geo_locations(dict):
     geolocations = []
     for item in dict:
@@ -75,7 +81,7 @@ def get_geo_locations(dict):
         }
         a_dict = item["location"]
         a_id = item["id"]
-        for cordinate in a_dict:
+        for item in a_dict:
             a_list = a_dict["gps"].split(",")
             longitude = a_list[0]
             latitude = a_list[1]
