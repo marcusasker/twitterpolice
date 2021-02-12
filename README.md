@@ -5,6 +5,6 @@ Skriv följande i terminalen på valfri textredigerare:
 -   . myenv/bin/activate
 -   pip3 install requests
 -   pip3 install tweepy
--   (om det behövs) export FLASK_APP=newapp.py
+-   (om det behövs) export FLASK_APP=app.py
 -   kör applikationen genom att skriva "flask run"
 Syntax kan variera för att köra på ett annat operativsystem
