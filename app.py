@@ -4,6 +4,8 @@ from twitterfunctions import search_tweet, get_police, search_police, get_geo_lo
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
+'''Route till startsidan som presenterar en automatisk sökning på alla dem senaste händelserna på polis sidan
+och tweets som söker efter sökordet x (polis) på twittersidan'''
 @app.route('/')
 def hello():
     error = None
@@ -12,6 +14,9 @@ def hello():
     y = search_all_tweet(x)
     return render_template('index.html', res=res, tweeters=y, error=error)
 
+'''Route till sidan som presenterar vad man har valt att söka på. Man får man upp resultat
+på sökning som gjort enbart med sökord, resultat på sökning som gjorts med sökord och datum
+eller resultat på sökning där sökordet på något sätt varit ogiltligt '''
 @app.route('/search', methods=['GET', 'POST'])
 def search():
 
@@ -51,7 +56,7 @@ def search():
         y = search_all_tweet(x)
         return render_template("index.html", res=res, tweeters=y, error=error)
 
-    
+'''Route till sidan med vår api dokumentation. '''
 @app.route('/api')
 def api():
     return render_template('apidoc.html')
