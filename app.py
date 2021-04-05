@@ -64,8 +64,14 @@ def results(result):
     for stories in res:
         if result == stories["name"]:
             story.append(stories)
-            print(stories)
-    return render_template("result.html", story=story)
+    tweets = search_all_tweet(result)
+    # if len(tweets) <= 0:
+    #     tweets = []
+    #     tweets.append("Det fanns inga tweets till händelsen!")
+    #     print(tweets)
+    print(tweets)
+
+    return render_template("result.html", story=story, tweets=tweets)
 
 '''Route till sidan med vår api dokumentation. '''
 @app.route('/api')

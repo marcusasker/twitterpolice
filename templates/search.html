@@ -58,13 +58,13 @@
           <div class="column1">
             {% for stories in res:%}
               <div class="card">
-              <h5>{{ stories["name"] }}</h5>
-                <p id="click">{{ stories["summary"] }}</p>
-                <a href="{{ stories["url"]}}">Länk till händelse</a>
+              <a href='http://127.0.0.1:5000/results/{{stories["name"]}}' ><h5>{{ stories["name"]}}</h5></a>
+                <p>{{ stories["summary"]}}</p>
+                <a href='{{ stories["url"]}}'>Länk till polisen</a>
               </div>
             {%endfor%}  
           </div>
-          <!-- {% comment %} <div class="column2">
+            <div class="column2">
             {% for tweet in tweeters:%}
               {%if tweeters == []:%}
                 <h5>Fanns inga tweets om händelse!</h5>
@@ -75,7 +75,7 @@
               </div>
               {%endif%}
             {%endfor%}
-          </div> {% endcomment %} -->
+          </div> 
         </div>
       </div>
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>  
