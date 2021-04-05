@@ -1,57 +1,58 @@
 <!doctype html>
-<html lang="en">
+<html>
     <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <title>TwitterPoPo</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@1,500&display=swap" rel="stylesheet">        <title>TwitterPoPo</title>
     </head>
     <body>
-    <div class="content">
-      <div id="header">
-        <h1 id="header">Twitterpolisen</h1>
-      </div>
-      <div>
-          <nav>
-              <a href="http://127.0.0.1:5000/">Tillbaka</a>
-          </nav>
-      </div>
-      <div>
-          <h2>Händelse:</h2>
-        <div class="card">
-          {% for stories in story:%}
-          <h4>{{stories['name']}}</h4>        
-          <p>{{stories['summary']}}</p>
-          <a href="{{stories['url']}}">länk till polisens hemsida</a>
-          {%endfor%}
-        </div>
-      </div>
-        {%if tweets == []%}
-          <div class="">
-              <div>
-                  <p>Det fanns inga tweets om händelse!</p>
-              </div>
-        {%else:%}
-            {% for tweet in tweets:%}
-                <div>
-                    <div class="card">
-                        <h5>{{tweet["username"]}}</h5>
-                        <p>{{tweet["text"] }}</p>
-                    </div>
-            {%endfor%}
+        <div class="content">
+            <div id="header">
+                <h1 id="header">Twitterpolisen</h1>
+            </div>
+            <nav class="navbar">
+                <a id="backBtn" href="http://127.0.0.1:5000/">Tillbaka</a>
+            </nav>
+            <div>
+                <h2 id="eventTitle">Händelse:</h2>
+                <div class="card" id="StoryCard">
+                  {% for stories in story:%}
+                  <h4>{{stories['name']}}</h4>        
+                  <p>{{stories['summary']}}</p>
+                  <a href="{{stories['url']}}">länk till polisens hemsida</a>
+                  {%endfor%}
                 </div>
-        {%endif%}
-          </div>
-        </div>
-      </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script> 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-  <script src="{{ url_for('static', filename='/script.js') }}"></script>  
-  </body>  
-</html>
+              </div>
+              <h2 id="eventTitle">Tweets relaterade till händelse:</h2>
+                {%if tweets == []%}
+                  <div class="card" id="TweetCard">
+                      <div>
+                          <p>Det fanns inga tweets om händelse!</p>
+                      </div>
+                {%else:%}
+                    {% for tweet in tweets:%}
+                        <div>
+                            <div class="card" id="TweetCard">
+                                <h5>{{tweet["username"]}}</h5>
+                                <p>{{tweet["text"] }}</p>
+                            </div>
+                    {%endfor%}
+                        </div>
+                {%endif%}
+                  </div>
+                </div>
+              </div>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script> 
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+            <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+            <script src="{{ url_for('static', filename='/script.js') }}"></script>  
+        </body>
+    </html>
