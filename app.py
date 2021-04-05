@@ -56,6 +56,17 @@ def search():
         y = search_all_tweet(x)
         return render_template("index.html", res=res, tweeters=y, error=error)
 
+@app.route('/results/<result>')
+def results(result):
+    result = result
+    story = []
+    res = get_police()
+    for stories in res:
+        if result == stories["name"]:
+            story.append(stories)
+            print(stories)
+    return render_template("result.html", story=story)
+
 '''Route till sidan med vår api dokumentation. '''
 @app.route('/api')
 def api():
