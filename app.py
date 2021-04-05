@@ -60,16 +60,14 @@ def search():
 def results(result):
     result = result
     story = []
-    res = get_police()
+    words = result.split(",")
+    anotherWord = words[1].split()
+    res = search_all_police(anotherWord[0])
     for stories in res:
         if result == stories["name"]:
             story.append(stories)
+            print("success")
     tweets = search_all_tweet(result)
-    # if len(tweets) <= 0:
-    #     tweets = []
-    #     tweets.append("Det fanns inga tweets till händelsen!")
-    #     print(tweets)
-    print(tweets)
 
     return render_template("result.html", story=story, tweets=tweets)
 
